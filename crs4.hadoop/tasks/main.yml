@@ -1,2 +1,9 @@
 ---
 # tasks file for crs4.hadoop
+
+- name: install hadoop
+  become: yes
+  unarchive:
+    src: "http://www-eu.apache.org/dist/hadoop/common/hadoop-{{ hadoop_version }}/hadoop-{{ hadoop_version }}.tar.gz"
+    dest: "{{ hadoop_parent }}"
+    remote_src: yes

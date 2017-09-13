@@ -1,2 +1,5 @@
 ---
 # defaults file for crs4.hadoop
+
+hadoop_version: "2.7.4"
+hadoop_parent: "/opt"
