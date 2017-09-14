@@ -1,2 +1,2 @@
 ---
-# vars file for crs4.hadoop
+hadoop_home: "{{ hadoop_parent }}/hadoop-{{ hadoop_version }}"
