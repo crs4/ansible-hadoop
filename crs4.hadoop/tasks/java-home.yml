@@ -1,0 +1,16 @@
+---
+- name: locate java
+  shell: "readlink -e $(which java)"
+  register: cmd
+  changed_when: False
+
+- name: set java_home
+  set_fact:
+    java_home: "{{ cmd.stdout.rsplit('/', 3)[0] }}"
+
+- name: add JAVA_HOME to the env
+  become: yes
+  template:
+    src: java.sh.j2
+    dest: /etc/profile.d/java.sh
+    mode: 0644

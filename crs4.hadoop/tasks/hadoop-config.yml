@@ -1,0 +1,7 @@
+---
+- name: configure hadoop env
+  become: yes
+  template:
+    src: hadoop-env.sh.j2
+    dest: "{{ hadoop_home }}/etc/hadoop/hadoop-env.sh"
+    mode: 0644

@@ -4,47 +4,8 @@
     name: which
     state: present
 
-- name: locate java
-  shell: "readlink -e $(which java)"
-  register: cmd
-  changed_when: False
+- include: java-home.yml
 
-- name: set java_home
-  set_fact:
-    java_home: "{{ cmd.stdout.rsplit('/', 3)[0] }}"
+- include: hadoop-install.yml
 
-- name: add JAVA_HOME to the env
-  become: yes
-  template:
-    src: java.sh.j2
-    dest: /etc/profile.d/java.sh
-    mode: 0644
-
-- name: install hadoop
-  become: yes
-  unarchive:
-    src: "http://www-eu.apache.org/dist/hadoop/common/hadoop-{{ hadoop_version }}/hadoop-{{ hadoop_version }}.tar.gz"
-    dest: "{{ hadoop_parent }}"
-    remote_src: yes
-    creates: "{{ hadoop_home }}"
-
-- name: symlink hadoop home
-  become: yes
-  file:
-    state: link
-    src: "{{ hadoop_home }}"
-    dest: "{{ hadoop_parent }}/hadoop"
-
-- name: add hadoop commands to the path
-  become: yes
-  template:
-    src: hadoop.sh.j2
-    dest: /etc/profile.d/hadoop.sh
-    mode: 0644
-
-- name: configure hadoop env
-  become: yes
-  template:
-    src: hadoop-env.sh.j2
-    dest: "{{ hadoop_home }}/etc/hadoop/hadoop-env.sh"
-    mode: 0644
+- include: hadoop-config.yml
