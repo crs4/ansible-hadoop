@@ -1,4 +1,10 @@
 ---
+- name: create data dir
+  file:
+    path: "{{ hadoop_data_dir }}"
+    state: directory
+    mode: 0755
+
 - name: configure env files
   become: yes
   lineinfile:
@@ -21,3 +27,8 @@
     - core
     - hdfs
     - mapred
+
+- name: format hdfs
+  command: "{{ hadoop_home }}/bin/hadoop namenode -format"
+  args:
+    creates: "{{ hdfs_name_dir }}"

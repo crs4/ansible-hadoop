@@ -3,11 +3,11 @@
 <configuration>
 <property>
   <name>dfs.namenode.name.dir</name>
-  <value>{{ hadoop_data_dir }}/hdfs/nn</value>
+  <value>{{ hdfs_name_dir }}</value>
 </property>
 <property>
   <name>dfs.datanode.data.dir</name>
-  <value>{{ hadoop_data_dir }}/hdfs/data</value>
+  <value>{{ hdfs_data_dir }}</value>
 </property>
 <property>
   <name>dfs.replication</name>

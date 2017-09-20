@@ -1,0 +1,5 @@
+---
+- name: check that the which command is available
+  yum:
+    name: which
+    state: present

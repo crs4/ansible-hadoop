@@ -1,8 +1,5 @@
 ---
-- name: check that the which command is available
-  yum:
-    name: which
-    state: present
+- include: dep-install.yml
 
 - include: java-home.yml
 

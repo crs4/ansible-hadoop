@@ -3,6 +3,8 @@ hadoop_version: "2.7.4"
 hadoop_parent: "/opt"
 hadoop_data_dir: "/hadoop"
 
+hdfs_name_subdir: "hdfs/nn"
+hdfs_data_subdir: "hdfs/data"
 hdfs_host: "localhost"
 hdfs_port: "9000"
 
