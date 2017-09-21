@@ -27,6 +27,7 @@
     - core
     - hdfs
     - mapred
+    - yarn
 
 - name: format hdfs
   command: "{{ hadoop_home }}/bin/hadoop namenode -format"

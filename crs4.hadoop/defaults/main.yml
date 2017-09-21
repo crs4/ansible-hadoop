@@ -7,5 +7,3 @@ hdfs_name_subdir: "hdfs/nn"
 hdfs_data_subdir: "hdfs/data"
 hdfs_host: "localhost"
 hdfs_port: "9000"
-
-mapred_framework: "yarn"
