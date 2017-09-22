@@ -1,11 +1,14 @@
 ---
-- name: create data dir
+- name: create data and log dirs
   file:
-    path: "{{ hadoop_data_dir }}"
+    path: "{{ item }}"
     state: directory
     mode: 0755
+  with_items:
+    - "{{ hadoop_data_dir }}"
+    - "{{ hadoop_log_dir }}"
 
-- name: configure env files
+- name: set JAVA_HOME
   become: yes
   lineinfile:
     path: "{{ hadoop_home }}/etc/hadoop/{{ item }}-env.sh"
@@ -16,6 +19,14 @@
     - hadoop
     - mapred
     - yarn
+
+- name: set HADOOP_LOG_DIR
+  become: yes
+  lineinfile:
+    path: "{{ hadoop_home }}/etc/hadoop/hadoop-env.sh"
+    regexp: 'export HADOOP_LOG_DIR=.*'
+    line: 'export HADOOP_LOG_DIR="{{ hadoop_log_dir }}"'
+    backrefs: yes
 
 - name: configure site files
   become: yes

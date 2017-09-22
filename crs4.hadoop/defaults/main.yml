@@ -2,6 +2,7 @@
 hadoop_version: "2.7.4"
 hadoop_parent: "/opt"
 hadoop_data_dir: "/hadoop"
+hadoop_log_dir: "/hadoop/logs"
 
 hdfs_name_subdir: "hdfs/nn"
 hdfs_data_subdir: "hdfs/data"
