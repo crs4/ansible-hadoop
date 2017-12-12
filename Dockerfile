@@ -6,7 +6,9 @@ COPY playbook.yml requirements.yml /build/
 COPY entrypoint.sh /
 
 RUN echo "assumeyes=1" >> /etc/yum.conf
-RUN yum install epel-release && yum update && yum install ansible
+RUN yum install epel-release && yum update && \
+    export ANSIBLE_VERSION=$(yum --showduplicates list ansible | grep ^ansible | awk '{print $2}' | grep '2\.3' | tail -n 1) && \
+    yum install "ansible-${ANSIBLE_VERSION}"
 RUN ansible-galaxy install -r /build/requirements.yml && \
     ansible-playbook /build/playbook.yml
 
