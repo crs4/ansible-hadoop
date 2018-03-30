@@ -1,0 +1,3 @@
+ansible==2.3.3
+docker<3.0.0  # work around https://github.com/ansible/ansible/issues/35612
+molecule

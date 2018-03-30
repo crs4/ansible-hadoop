@@ -5,12 +5,6 @@ language: python
 services:
   - docker
 
-install:
-  - pip install --upgrade pip
-  - pip install ansible==2.3.1
-  - pip install docker
-  - pip install molecule
-
 script:
   - ansible-lint --version
   - cd crs4.hadoop && molecule test
