@@ -1,8 +1,6 @@
 ---
 - include: dep-install.yml
 
-- include: java-home.yml
-
 - include: hadoop-install.yml
 
 - include: hadoop-config.yml

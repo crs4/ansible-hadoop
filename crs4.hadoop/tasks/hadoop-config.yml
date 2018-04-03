@@ -8,6 +8,13 @@
     - "{{ hadoop_data_dir }}"
     - "{{ hadoop_log_dir }}"
 
+- name: add JAVA_HOME to the env
+  become: yes
+  template:
+    src: java.sh.j2
+    dest: /etc/profile.d/java.sh
+    mode: 0644
+
 - name: set JAVA_HOME
   become: yes
   lineinfile:

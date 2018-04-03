@@ -15,3 +15,4 @@ galaxy_info:
 dependencies:
   - role: openmicroscopy.java
     java_jdk_install: True
+    java_jre_versions: "{{ java_version }}"
