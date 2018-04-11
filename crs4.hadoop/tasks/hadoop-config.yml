@@ -38,7 +38,7 @@
 - name: configure site files
   become: yes
   template:
-    src: "{{ item }}-site.xml.j2"
+    src: "hadoop{{ hadoop_major_version }}/{{ item }}-site.xml.j2"
     dest: "{{ hadoop_home }}/etc/hadoop/{{ item }}-site.xml"
     mode: 0644
   with_items:

@@ -2,5 +2,6 @@
 java_home: "/usr/lib/jvm/java-{{ java_version }}-openjdk"
 
 hadoop_home: "{{ hadoop_parent }}/hadoop-{{ hadoop_version }}"
+hadoop_major_version: "{{ hadoop_version.split('.', 1)[0] }}"
 hdfs_name_dir: "{{ hadoop_data_dir }}/{{ hdfs_name_subdir }}"
 hdfs_data_dir: "{{ hadoop_data_dir }}/{{ hdfs_data_subdir }}"
