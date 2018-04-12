@@ -10,7 +10,7 @@ COPY entrypoint.sh /
 RUN echo "assumeyes=1" >> /etc/yum.conf && \
     yum install epel-release && \
     yum update && \
-    export ANSIBLE_VERSION=$(yum --showduplicates list ansible | grep ^ansible | awk '{print $2}' | grep '2\.3' | tail -n 1) && \
+    export ANSIBLE_VERSION=$(yum --showduplicates list ansible | grep ^ansible | awk '{print $2}' | grep '2\.4' | grep -v '2\.4\.4' | tail -n 1) && \
     yum install "ansible-${ANSIBLE_VERSION}" && \
     ansible-galaxy install -r /build/requirements.yml && \
     ansible-playbook -e "hadoop_version=${HADOOP_VERSION}" /build/playbook.yml && \

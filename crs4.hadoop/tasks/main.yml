@@ -1,6 +1,6 @@
 ---
-- include: dep-install.yml
+- import_tasks: dep-install.yml
 
-- include: hadoop-install.yml
+- import_tasks: hadoop-install.yml
 
-- include: hadoop-config.yml
+- import_tasks: hadoop-config.yml
