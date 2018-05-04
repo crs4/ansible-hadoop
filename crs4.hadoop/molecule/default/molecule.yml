@@ -1,19 +1,33 @@
 ---
 dependency:
   name: galaxy
+
 driver:
   name: docker
+
 lint:
   name: yamllint
+
 platforms:
-  - name: instance
+  - name: hadoop2
     image: centos:7
+  - name: hadoop3
+    image: centos:7
+
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  inventory:
+    host_vars:
+      hadoop2:
+        hadoop_version: "2.9.0"
+      hadoop3:
+        hadoop_version: "3.0.1"
+
 scenario:
   name: default
+
 verifier:
   name: testinfra
   lint:

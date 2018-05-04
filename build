@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+for v in "2.9.0" "3.0.1"; do
+    docker build --build-arg HADOOP_VERSION=${v} -t crs4/hadoop:${v%%.*} .
+done
+docker tag crs4/hadoop:3 crs4/hadoop:latest
