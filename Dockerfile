@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER simone.leo@crs4.it
 
-ARG HADOOP_VERSION=3.0.1
+ARG HADOOP_VERSION=3.0.3
 
 COPY crs4.hadoop /build/crs4.hadoop/
 COPY playbook.yml requirements.yml /build/
