@@ -19,8 +19,8 @@
   become: yes
   lineinfile:
     path: "{{ hadoop_home }}/etc/hadoop/{{ item }}-env.sh"
+    regexp: '^export JAVA_HOME'
     line: 'export JAVA_HOME="{{ java_home }}"'
-    state: present
     insertbefore: BOF
   with_items:
     - hadoop
