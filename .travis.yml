@@ -8,3 +8,8 @@ services:
 script:
   - ansible-lint --version
   - cd crs4.hadoop && molecule test
+  - ./build
+  - docker run --rm --name hadoop -d crs4/hadoop
+ - "docker exec hadoop bash -c 'while : ; do jps | grep DataNode && break; done'"
+ - docker exec hadoop bash -c "source /etc/profile && /check"
+ - docker stop hadoop
