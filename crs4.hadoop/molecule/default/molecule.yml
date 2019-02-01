@@ -21,7 +21,7 @@ provisioner:
   inventory:
     host_vars:
       hadoop2:
-        hadoop_version: "2.9.1"
+        hadoop_version: "2.9.2"
       hadoop3:
         hadoop_version: "3.0.3"
 
