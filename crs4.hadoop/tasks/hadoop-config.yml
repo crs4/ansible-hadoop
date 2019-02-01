@@ -46,8 +46,3 @@
     - hdfs
     - mapred
     - yarn
-
-- name: format hdfs
-  command: "{{ hadoop_home }}/bin/hadoop namenode -format"
-  args:
-    creates: "{{ hdfs_name_dir }}"
