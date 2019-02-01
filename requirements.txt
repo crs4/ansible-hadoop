@@ -1,6 +1,4 @@
-# https://github.com/philpep/testinfra/issues/274
-# https://github.com/ansible/ansible/issues/38655
-ansible>=2.4.0,<=2.4.3
+ansible>=2.4.5,<2.5.0
 
 # https://github.com/ansible/ansible/issues/35612
 docker<3.0.0

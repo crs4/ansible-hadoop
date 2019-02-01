@@ -10,8 +10,9 @@ COPY entrypoint.sh /
 RUN echo "assumeyes=1" >> /etc/yum.conf && \
     yum install epel-release && \
     yum update && \
-    export ANSIBLE_VERSION=$(yum --showduplicates list ansible | grep ^ansible | awk '{print $2}' | grep '2\.4' | grep -v '2\.4\.4' | tail -n 1) && \
-    yum install "ansible-${ANSIBLE_VERSION}" && \
+    yum install python-pip && \
+    pip install --no-cache-dir --upgrade pip && \
+    pip install 'ansible>=2.4.5,<2.5.0' && \
     ansible-galaxy install -r /build/requirements.yml && \
     ansible-playbook -e "hadoop_version=${HADOOP_VERSION}" /build/playbook.yml && \
     echo "net.ipv6.conf.all.disable_ipv6 = 1" >>/etc/sysctl.conf && \
