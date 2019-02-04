@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+v=${HADOOP_VERSION%%.*}
+echo "${CI_PASS}" | docker login -u "${CI_USER}" --password-stdin
+docker push crs4/hadoop:${v}
+if [ ${v} == "3" ]; then
+    docker tag crs4/hadoop:${v} crs4/hadoop:latest
+    docker push crs4/hadoop:latest
+fi

@@ -18,3 +18,10 @@ script:
   - "docker exec hadoop bash -c 'while : ; do jps | grep DataNode && break; done'"
   - docker exec hadoop bash -c "source /etc/profile && /check"
   - docker stop hadoop
+
+deploy:
+  - provider: script
+    script: ./push
+    on:
+      repo: crs4/ansible-hadoop
+      branch: master
