@@ -9,9 +9,7 @@ lint:
   name: yamllint
 
 platforms:
-  - name: hadoop2
-    image: centos:7
-  - name: hadoop3
+  - name: instance
     image: centos:7
 
 provisioner:
@@ -20,10 +18,8 @@ provisioner:
     name: ansible-lint
   inventory:
     host_vars:
-      hadoop2:
-        hadoop_version: "2.9.2"
-      hadoop3:
-        hadoop_version: "3.0.3"
+      instance:
+        hadoop_version: "${HADOOP_VERSION}"
 
 scenario:
   name: default
