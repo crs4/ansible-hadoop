@@ -5,7 +5,7 @@ ARG HADOOP_VERSION=3.0.3
 
 COPY crs4.hadoop /build/crs4.hadoop/
 COPY playbook.yml requirements.yml /build/
-COPY entrypoint.sh /
+COPY check entrypoint.sh /
 
 RUN echo "assumeyes=1" >> /etc/yum.conf && \
     yum install epel-release && \

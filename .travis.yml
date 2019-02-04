@@ -1,10 +1,27 @@
----
-sudo: required
 language: python
 
-services:
-  - docker
+cache: pip
+
+env:
+  - HADOOP_VERSION=2.9.2
+  - HADOOP_VERSION=3.0.3
+
+sudo: required
+
+services: docker
 
 script:
   - ansible-lint --version
-  - cd crs4.hadoop && molecule test
+  - pushd crs4.hadoop; molecule test; popd
+  - docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t crs4/hadoop:${HADOOP_VERSION%%.*} .
+  - docker run --rm --name hadoop -d crs4/hadoop:${HADOOP_VERSION%%.*}
+  - "docker exec hadoop bash -c 'while : ; do jps | grep DataNode && break; done'"
+  - docker exec hadoop bash -c "source /etc/profile && /check"
+  - docker stop hadoop
+
+deploy:
+  - provider: script
+    script: ./push
+    on:
+      repo: crs4/ansible-hadoop
+      branch: master
