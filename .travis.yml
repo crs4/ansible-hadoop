@@ -13,8 +13,8 @@ services: docker
 script:
   - ansible-lint --version
   - pushd crs4.hadoop; molecule test; popd
-  - docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t crs4/hadoop:${HADOOP_VERSION%%.*} .
-  - docker run --rm --name hadoop -d crs4/hadoop:${HADOOP_VERSION%%.*}
+  - docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t test_hadoop .
+  - docker run --rm --name hadoop -d test_hadoop
   - "docker exec hadoop bash -c 'while : ; do jps | grep DataNode && break; done'"
   - docker exec hadoop bash -c "source /etc/profile && /check"
   - docker stop hadoop
